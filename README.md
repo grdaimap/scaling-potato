@@ -14,7 +14,7 @@ In the eyes of the masters, what we create are just toys. But toys really help u
 
 <br></br>
 <br></br>
-*中文版本*
+*简体中文版本*
 # 介绍
 > 此存储库存储不常用的有用代码模块。
 
