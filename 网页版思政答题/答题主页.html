@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <script>
+        var anchor = 0;
+        var ansarr = [];
+        var isshow = false
+        var mda = false
+        var mdatatwo = []
+        var ni = 0
+    </script>
+    <script src="./data.js"></script>
+    <script>
+        while (arr[anchor][0] < 1) { anchor++; }
+        var rrr = arr[arr.length - 1][0]-1;
+    </script>
+    <script>
+        function load() {
+            document.getElementById("amout").innerHTML = "总题数" + rrr;
+            document.getElementById("pid").innerHTML = arr[anchor][0]
+            document.getElementById("ptitle").innerHTML = "";
+            document.getElementById("pques").innerHTML = "";
+            for (let i = 0; i < arr[anchor][1].length; i++) {
+                document.getElementById("ptitle").innerHTML += arr[anchor][1][i]
+            }
+            for (let i = 0; i < arr[anchor][2].length; i++) {
+                document.getElementById("pques").innerHTML += arr[anchor][2][i]
+            }
+            let x = document.getElementById("pform");
+            for (let i = 0; i < arr[anchor + 1][3].length; i++) {
+                let pget = ['A', 'B', 'C', 'D', 'E', 'F']
+                let pt = document.getElementById(pget[i])
+                pt.value = arr[anchor + 1][3][i]
+                pt.style.backgroundColor = "transparent";
+            }
+            document.getElementById("pans").innerHTML = "";
+            for (let i = 0; i < arr[anchor][4].length; i++) {
+                document.getElementById("pans").innerHTML += arr[anchor][4][i]
+            }
+            if (isshow) { document.getElementById("pans").removeAttribute("hidden") }else{
+                document.getElementById("pans").setAttribute("hidden","hidden")
+            }
+            ansarr = arr[anchor][4]
+
+        }
+        function show() {
+            if (ansarr.length <= 0) return;
+            for (let i = 0; i < ansarr.length; i++) {
+                document.getElementById(ansarr[i]).value += "（正确）";
+                document.getElementById(ansarr[i]).style.backgroundColor = "yellowgreen";
+            }
+        }
+        function anshow() {
+            isshow = !isshow;
+            let b = document.getElementById("bshow")
+            if (b.value == "隐藏答案") b.value = "显示答案";
+            else if (b.value == "显示答案") b.value = "隐藏答案";
+            load();
+        }
+        function checkans(e) {
+            let ano = 0;
+            can = e.target.id;
+
+            for (let i = 0; i < 6; i++) {
+
+                let ans = ansarr[i];
+
+                if (ans == can) {
+                    console.log(ansarr[i])
+                    e.target.style.backgroundColor = "lightgreen";
+                    e.target.disable = true;
+                    ano += 1;
+                    if (ano == ansarr.length) {
+                        e.target.value += "（正确）";
+                        anchor++; if (mda) { anchor = mdatatwo[++ni] }
+                        setTimeout("load()", 800);
+                    }
+                    return;
+                }
+            }
+            e.target.style.backgroundColor = "red";
+            e.target.value += "（错误）";
+            e.target.disable = true;
+            document.getElementById("mistakes").value += anchor + " ";
+            show();
+            anchor++; if (mda) { anchor = mdatatwo[++ni];if(!anchor)alert("越界！！！"); }
+            if(anchor>arr.length)alert("越界！！！");
+            setTimeout("load()", 3000);
+        }
+        function preck() {
+            anchor--; if (mda) { anchor = mdatatwo[--ni] ;if(!anchor)alert("越界！！！");}
+            if(anchor<0)alert("越界！！！");
+            load();
+        }
+        function nexck() {
+            anchor++; if (mda) { anchor = mdatatwo[++ni];if(!anchor)alert("越界！！！"); }
+            if(anchor>arr.length)alert("越界！！！");
+            load();
+        }
+        function mc(e) {
+            let mdataone = document.getElementById("mistakes").value.split(" ");
+            mdatatwo = [];
+            for (let i = 0; i < mdataone.length; i++) {
+                if (parseInt(mdataone[i])) {
+                    mdatatwo[i] = parseInt(mdataone[i])
+                }
+            }
+            console.log(mdataone, mdatatwo)
+            mda = true;
+            ni = 0;
+            anchor = mdatatwo[ni]
+            e.target.disable = true;
+            load()
+        }
+    </script>
+</head>
+<style type="text/css">
+
+    body {font-size:18pt}
+    input {font-size:18pt}
+
+</style>
+<body onload="load()">
+    <form id="pform" style="width: 100%;">
+        <p id="pid" hidden>?</p>
+        <p id="amout">总题数：</p>
+        <p id='ptitle'>标题：</p>
+        <p id='pques'>问题：</p>
+        <input id="A" type="button" value="A" onclick="checkans(event)" />
+        <br>
+        <br>
+        <input id="B" type="button" value="B" onclick="checkans(event)" />
+        <br>
+        <br>
+        <input id="C" type="button" value="C" onclick="checkans(event)" />
+        <br>
+        <br>
+        <input id="D" type="button" value="D" onclick="checkans(event)" />
+        <br>
+        <br>
+        <input id="E" type="button" value="E" onclick="checkans(event)" />
+        <br>
+        <br>
+        <input id="F" type="button" value="F" onclick="checkans(event)" />
+        <br>
+        <p id="pans" hidden></p>
+        <br>
+        <input id="bshow" type="button" value="显示答案" onclick="anshow()" />
+        <br>
+    </form>
+    <br>
+    <input id="pre" type="button" value="前一条" onclick="preck()" />
+    <input id="nex" type="button" value="后一条" onclick="nexck()" />
+    <br>
+    <br>
+    <p>错题的数据编号（非题号）：</p>
+    <input id="mistakes" type="text" style="width: 90%;height: 100%;">
+    <br>
+    <br>
+    <input id="bmc" type="button" value="练习错题" onclick="mc(event)" />
+</body>
+
+</html>
