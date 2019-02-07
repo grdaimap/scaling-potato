@@ -1,7 +1,7 @@
-Vscode_Buttom
+VSCode_Buttom
 ===========
 
-# 介绍 Introduction
+## 介绍 Introduction
 > 自定义一个按钮，使VSCode更方便！
 
 > Customize a button to make VSCode more convenient!
