@@ -10,6 +10,9 @@ VSCode_Buttom
 
 ![动图](./1.gif)
 
+
+![动图](./2.gif)
+
 ## [点击此处下载插件](https://github.com/grdaimap/scaling-potato/raw/master/vscode_buttom/vscode-buttom-0.0.1.vsix)
 
 ---------------------------
