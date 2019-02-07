@@ -9,3 +9,8 @@ Vscode_Buttom
 # Introduction
 > Customize a button to make VSCode more convenient!
 
+![动图](./i.gif)
+
+[点击此处下载插件]()
+
+node_modules和.vscode文件夹没有上传

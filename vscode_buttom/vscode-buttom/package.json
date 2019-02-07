@@ -1,0 +1,67 @@
+{
+	"name": "vscode-buttom",
+	"publisher":"grdaimap",
+	"displayName": "buttom",
+	"description": "Add a custom button. / 添加一个自定义按钮。",
+	"keywords": [
+		"vscode",
+		"plugin",
+		"buttom"
+	],
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.11.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.helloWorld"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "Vscode-Buttom",
+			"properties": {}
+		},
+		"commands": [
+			{
+				"command": "extension.helloWorld",
+				"title": "Extension Active"
+			}
+		],
+		"menus": {
+			"editor/title": [
+				{
+					"when": "!inDebugMode",
+					"command": "workbench.action.debug.start",
+					"group": "navigation"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "yarn run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28",
+		"tslint": "^5.12.1",
+		"@types/node": "^8.10.25",
+		"@types/mocha": "^2.2.42"
+	},
+	"license": "SEE LICENSE IN LICENSE.txt",
+	"bugs": {
+		"url": "https://github.com/grdaimap/scaling-potato/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/grdaimap/scaling-potato/tree/master/vscode_buttom"
+	},
+	"homepage": "https://github.com/grdaimap/scaling-potato/blob/master/vscode_buttom/README.md"
+}
